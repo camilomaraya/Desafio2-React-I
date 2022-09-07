@@ -1,25 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import Login from "./components/Login";
+import Btn from "./components/Button";
+import Title from "./components/Title";
+import { useState } from "react";
+import './index.css'
 
-function App() {
+
+
+function App(){
+  const [user, setUser] = useState("");
+  const [password, setPassword] = useState ("");
+  const clickbtn = password === "252525";
+  
+
+  const validarLogin = (e) =>{
+    e.preventDefault();
+    if (user === ""){
+      alert("Ingresa tu usuario")
+    }
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="titulo">
+        <Title/>
+      </div>
+      <form onSubmit={validarLogin}>
+        <div>
+          <Login
+            user={user}
+            setUser={setUser}
+            password={password}
+            setPassword={setPassword}
+          />
+        </div>
+        <div className="d-grid mb-4">
+        <Btn clickbtn={clickbtn} /> 
+        </div>
+      </form>
     </div>
-  );
+    );
 }
 
 export default App;
